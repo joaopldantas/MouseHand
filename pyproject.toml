@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mouse-cv"
+version = "0.1.0"
+description = "Control your mouse cursor with hand gestures using a webcam, MediaPipe and OpenCV."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Joao Pedro" }]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+keywords = ["computer-vision", "mediapipe", "opencv", "hand-tracking", "gesture-recognition", "hci"]
+dependencies = [
+    "mediapipe>=0.10.30",
+    "opencv-contrib-python>=4.8",  # same flavor mediapipe depends on; avoid also installing opencv-python
+    "pyautogui>=0.9.54",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.urls]
+Repository = "https://github.com/joaopldantas/mouse_cv"
+
+[project.scripts]
+mouse-cv = "mouse_cv.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+mouse_cv = ["models/*.task"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py39"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["UP007", "UP045"]  # keep Optional/Union for Python 3.9 runtime annotations in dataclasses

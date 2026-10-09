@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🖐️ mouse_cv
+# Mouse Hand
 
 **Controle o mouse do seu computador só com a mão, usando a webcam.**
 
@@ -20,7 +20,7 @@ Visão computacional em tempo real com MediaPipe + OpenCV: mova o cursor, clique
 
 ---
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 - **Cursor suave** — o indicador controla o ponteiro, com suavização exponencial para eliminar tremidas.
 - **Clique, clique direito e arrastar** com gestos de pinça (polegar + indicador).
@@ -30,20 +30,20 @@ Visão computacional em tempo real com MediaPipe + OpenCV: mova o cursor, clique
 - **Seguro por padrão** — solta o botão do mouse ao perder a mão ou ao sair, e mantém o *fail-safe* do PyAutoGUI como parada de emergência.
 - **Lógica de gestos testável** — a máquina de estados é Python puro, coberta por testes que rodam sem webcam.
 
-## 👋 Gestos
+## Gestos
 
 | Ação | Gesto |
 | --- | --- |
 | **Mover cursor** | Mova o dedo indicador dentro do retângulo central da câmera |
 | **Clique esquerdo** | Pinça rápida (encoste e solte polegar + indicador) |
-| **Clique direito** | Duas pinças rápidas seguidas **ou** punho fechado ✊ |
+| **Clique direito** | Duas pinças rápidas seguidas **ou** punho fechado |
 | **Arrastar / soltar** | Segure a pinça por ~0,5s para agarrar; abra os dedos para soltar |
-| **Scroll** | 4 dedos estendidos 🖐️; leve a mão para o topo (sobe) ou para baixo (desce) da imagem |
+| **Scroll** | 4 dedos estendidos; leve a mão para o topo (sobe) ou para baixo (desce) da imagem |
 | **Sair** | Tecla `q` na janela de preview (ou `Ctrl+C`) |
 
-> 💡 O retângulo cinza no preview é a área mapeada para a tela inteira — assim você alcança as bordas sem tirar a mão do enquadramento.
+> O retângulo cinza no preview é a área mapeada para a tela inteira — assim você alcança as bordas sem tirar a mão do enquadramento.
 
-## 🚀 Começando
+## Começando
 
 ### Requisitos
 
@@ -76,11 +76,11 @@ Ou, sem instalar o comando: `python -m mouse_cv`.
 | `--no-preview` | Roda sem a janela da câmera |
 | `-v, --verbose` | Logs detalhados |
 
-## ⚙️ Como funciona
+## Como funciona
 
 ```mermaid
 flowchart LR
-    A[📷 Webcam<br/>OpenCV] --> B[MediaPipe<br/>Gesture Recognizer]
+    A[Webcam<br/>OpenCV] --> B[MediaPipe<br/>Gesture Recognizer]
     B -->|21 landmarks<br/>+ gesto| C[GestureController<br/>máquina de estados]
     C -->|ações| D[MouseDriver<br/>PyAutoGUI]
     C --> E[HUD<br/>preview]
@@ -97,7 +97,7 @@ Alguns detalhes que deixam a interação estável:
 - **Clique adiado:** um clique simples espera a janela de duplo-clique terminar antes de disparar, para que duas pinças virem clique direito sem gerar um clique esquerdo antes.
 - **Debounce e cooldowns** por ação para ignorar ruído de detecção.
 
-## 🔧 Configuração
+## Configuração
 
 Todos os parâmetros ficam em [`src/mouse_cv/config.py`](src/mouse_cv/config.py), documentados. Os mais úteis:
 
@@ -110,7 +110,7 @@ Todos os parâmetros ficam em [`src/mouse_cv/config.py`](src/mouse_cv/config.py)
 | `double_click_gap` | `0.5s` | Janela para a segunda pinça (clique direito) |
 | `scroll_step` | `90` | Intensidade de cada passo de scroll |
 
-## 🗂️ Estrutura do projeto
+## Estrutura do projeto
 
 ```
 mouse_cv/
@@ -127,7 +127,7 @@ mouse_cv/
 └── pyproject.toml
 ```
 
-## 🧪 Desenvolvimento
+## Desenvolvimento
 
 ```bash
 pip install -e ".[dev]"
@@ -138,7 +138,7 @@ ruff format .   # formatação
 
 O CI roda lint e testes em Python 3.9 e 3.12 a cada push e pull request.
 
-## 🩺 Solução de problemas
+## Solução de problemas
 
 | Problema | Solução |
 | --- | --- |
@@ -148,18 +148,18 @@ O CI roda lint e testes em Python 3.9 e 3.12 a cada push e pull request.
 | Cursor tremendo | Diminua `cursor_smoothing` e melhore a iluminação. |
 | Cliques acidentais | Diminua `pinch_start_dist`. |
 
-## 🛣️ Roadmap
+## Roadmap
 
 - [ ] Configuração por arquivo (TOML) e via CLI, sem editar código
 - [ ] Calibração automática da área de movimento
 - [ ] Suporte a duas mãos (ex.: zoom com pinça dupla)
 - [ ] Gestos personalizados treinados com MediaPipe Model Maker
 
-## 🙏 Créditos
+## Créditos
 
 - [MediaPipe Gesture Recognizer](https://ai.google.dev/edge/mediapipe/solutions/vision/gesture_recognizer) — modelo de detecção de mãos e gestos (Apache 2.0)
 - [OpenCV](https://opencv.org/) e [PyAutoGUI](https://github.com/asweigart/pyautogui)
 
-## 📄 Licença
+## Licença
 
 Distribuído sob a licença MIT. Veja [`LICENSE`](LICENSE) para mais detalhes.
